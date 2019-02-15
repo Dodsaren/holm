@@ -1,28 +1,17 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { connect } from 'react-redux'
+import MainMenu from './containers/MainMenu'
+import GameMenu from './containers/GameMenu'
+import Game from './containers/Game'
+import GameOver from './containers/GameOver'
+import { MAIN_MENU, GAME_MENU, IN_GAME, GAME_OVER } from './flux/gameStates'
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
+const screens = {
+  [MAIN_MENU]: <MainMenu />,
+  [GAME_MENU]: <GameMenu />,
+  [IN_GAME]: <Game />,
+  [GAME_OVER]: <GameOver />,
 }
-
-export default App;
+const App = ({ gameState }) => screens[gameState]
+const mapStateToProps = ({ gameState }) => ({ gameState })
+export default connect(mapStateToProps)(App)

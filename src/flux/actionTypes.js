@@ -1,0 +1,5 @@
+export const START_GAME = 'START_GAME'
+export const SELECT_QUIZ = 'SELECT_QUIZ'
+export const START_QUIZ = 'START_QUIZ'
+export const TO_MAIN_MENU = 'TO_MAIN_MENU'
+export const END_GAME = 'END_GAME'
