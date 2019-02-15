@@ -1,8 +1,8 @@
 import MainMenu from '../components/MainMenu'
 import { connect } from 'react-redux'
-import { startGame } from '../flux/actions'
+import { initGame } from '../flux/actions'
 
 export default connect(
   null,
-  { startGame },
+  { initGame },
 )(MainMenu)

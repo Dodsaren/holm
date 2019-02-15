@@ -6,7 +6,9 @@ const Quiz = ({ quiz, question, selected, select, increment }) => (
     <div>{question.id}</div>
     <div>{question.label}</div>
     {question.options.map((option, idx) => (
-      <div onClick={() => select(idx)}>{option}</div>
+      <div key={option} onClick={() => select(idx)}>
+        {option}
+      </div>
     ))}
     <button disabled={selected === null} onClick={increment} type="button">
       nesta frega

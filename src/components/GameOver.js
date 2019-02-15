@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { toMainMenu, startGame } from '../flux/actions'
+import { toMainMenu, initGame } from '../flux/actions'
 
 const GameOver = ({
   answers,
@@ -18,7 +18,7 @@ const GameOver = ({
         const correct = solutions[i].includes(answers[i])
         const selectedAnswer = q.options[answers[i]]
         return (
-          <div>
+          <div key={q.label}>
             <h4>{q.label}</h4>
             <h4>{selectedAnswer}</h4>
             <p>{correct ? 'Korrekt' : 'Inte korrekt'}</p>
@@ -44,7 +44,7 @@ const mapStateToProps = ({ justFinished, answers }) => ({
 
 const mapDispatchToProps = {
   toMainMenu,
-  toQuizSelection: startGame,
+  toQuizSelection: initGame,
 }
 
 export default connect(

@@ -1,10 +1,10 @@
 import React from 'react'
-import styles from './start.scss'
+import styles from './start.module.scss'
 
-const MainMenu = ({ startGame }) => (
-  <section class={styles.section}>
+const MainMenu = ({ initGame }) => (
+  <section className={styles.section}>
     <h1>Välkommen till startskärmen</h1>
-    <button onClick={startGame}>Klicka här för att starta spelet</button>
+    <button onClick={initGame}>Klicka här för att starta spelet</button>
   </section>
 )
 
