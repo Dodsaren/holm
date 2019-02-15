@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import MainMenu from './containers/MainMenu'
-import QuizSelector from './containers/QuizSelector2'
+import QuizSelector from './containers/QuizSelector'
 import Game from './containers/Game'
 import GameOver from './containers/GameOver'
 import ModeSelector from './components/ModeSelector'
