@@ -6,6 +6,8 @@ import {
   END_GAME,
   MODE_SELECTED,
   MODE_SELECTION_CONFIRMED,
+  PARTICIPANT_ADDED,
+  PARTICIPANT_REMOVED,
 } from './actionTypes'
 
 export function toMainMenu() {
@@ -34,4 +36,12 @@ export function modeSelected(payload) {
 
 export function modeConfirmed() {
   return { type: MODE_SELECTION_CONFIRMED }
+}
+
+export function participantAdded(participant) {
+  return { type: PARTICIPANT_ADDED, payload: { participant } }
+}
+
+export function participantRemoved(id) {
+  return { type: PARTICIPANT_REMOVED, payload: { id } }
 }

@@ -6,6 +6,8 @@ import {
   GAME_STARTED,
   TO_MAIN_MENU,
   END_GAME,
+  PARTICIPANT_ADDED,
+  PARTICIPANT_REMOVED,
 } from './actionTypes'
 import {
   MAIN_MENU,
@@ -21,6 +23,7 @@ const initialState = {
   answers: [],
   justFinished: null,
   mode: null,
+  participants: [],
 }
 
 export default (state = initialState, action) => {
@@ -48,6 +51,17 @@ export default (state = initialState, action) => {
       }
     case TO_MAIN_MENU:
       return { ...state, gameState: MAIN_MENU }
+    case PARTICIPANT_ADDED:
+      return {
+        ...state,
+        participants: [...state.participants, payload.participant],
+      }
+    case PARTICIPANT_REMOVED: {
+      return {
+        ...state,
+        participants: state.participants.filter(x => x.id !== payload.id),
+      }
+    }
     default:
       return state
   }

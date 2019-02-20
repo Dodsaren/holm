@@ -16,7 +16,7 @@ const Quiz = ({ quiz, question, selected, select, increment }) => (
   </div>
 )
 
-class Game extends Component {
+class Singleplayer extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -64,4 +64,4 @@ class Game extends Component {
   }
 }
 
-export default Game
+export default Singleplayer

@@ -2,9 +2,9 @@ import React from 'react'
 import { connect } from 'react-redux'
 import gql from 'graphql-tag'
 import { Query } from 'react-apollo'
-import { MULTIPLAYER, SINGLEPLAYER } from '../../flux/gameModes'
+import { LOCAL_MULTIPLAYER_CORE, SINGLEPLAYER_CORE } from '../../flux/gameModes'
 import Singleplayer from './Singleplayer'
-import Multiplayer from './Multiplayer'
+import Multiplayer from './Multiplayer/Container'
 
 const GET_QUIZ = gql`
   {
@@ -17,8 +17,8 @@ const GET_QUIZ = gql`
 
 const optionsScreen = mode => props => {
   const screens = {
-    [SINGLEPLAYER]: <Singleplayer {...props} />,
-    [MULTIPLAYER]: <Multiplayer {...props} />,
+    [SINGLEPLAYER_CORE]: <Singleplayer {...props} />,
+    [LOCAL_MULTIPLAYER_CORE]: <Multiplayer {...props} />,
   }
   return screens[mode]
 }
