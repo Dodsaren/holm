@@ -1,0 +1,16 @@
+@keyframes opacitator {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.playerListItem {
+  background: goldenrod;
+  padding: 0.2em;
+  margin: 0.2em;
+  border: solid 2px black;
+  animation: opacitator 1s 1 normal ease-in-out backwards;
+}

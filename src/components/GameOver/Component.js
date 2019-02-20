@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { toMainMenu, initGame } from '../flux/actions'
+import { toMainMenu, initGame } from '../../flux/actions'
 
 const GameOver = ({
   answers,

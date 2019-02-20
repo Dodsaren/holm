@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { modeConfirmed, modeSelected } from '../flux/actions'
-import { SINGLEPLAYER, MULTIPLAYER } from '../flux/gameModes'
+import { modeConfirmed, modeSelected } from '../../flux/actions'
+import { SINGLEPLAYER, MULTIPLAYER } from '../../flux/gameModes'
 
 const ModeSelector = ({ mode, modeSelected, modeConfirmed }) => (
   <div>

@@ -1,9 +1,9 @@
 import React from 'react'
 import gql from 'graphql-tag'
 import { Query } from 'react-apollo'
-import SinglePlayerGame from '../components/Game'
+import Singleplayer from './Component'
 import { connect } from 'react-redux'
-import { endGame } from '../flux/actions'
+import { endGame } from '../../flux/actions'
 
 const GET_QUIZ = gql`
   query Quiz($id: ID) {
@@ -23,7 +23,7 @@ const Game = ({ selectedQuizId, endGame }) => (
     {({ loading, error, data }) => {
       if (loading) return 'Loading'
       if (error) return `Error!: ${error}`
-      return <SinglePlayerGame quiz={data.quiz[0]} endGame={endGame} />
+      return <Singleplayer quiz={data.quiz[0]} endGame={endGame} />
     }}
   </Query>
 )

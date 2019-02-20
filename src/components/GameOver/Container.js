@@ -1,7 +1,7 @@
 import React from 'react'
 import gql from 'graphql-tag'
 import { Query } from 'react-apollo'
-import GameOverComponent from '../components/GameOver'
+import GameOverComponent from './Component'
 import { connect } from 'react-redux'
 
 const GET_QUIZ = gql`

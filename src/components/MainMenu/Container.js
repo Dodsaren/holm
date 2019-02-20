@@ -1,6 +1,6 @@
-import MainMenu from '../components/MainMenu'
+import MainMenu from './Component'
 import { connect } from 'react-redux'
-import { initGame } from '../flux/actions'
+import { initGame } from '../../flux/actions'
 
 export default connect(
   null,

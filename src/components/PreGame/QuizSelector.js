@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { selectQuiz, startQuiz } from '../flux/actions'
-import GameMenu from '../components/GameMenu'
+import { selectQuiz, startQuiz } from '../../flux/actions'
+import GameMenu from './GameMenu'
 
 class QuizSelector extends Component {
   constructor(props) {

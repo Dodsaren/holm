@@ -1,10 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import MainMenu from './containers/MainMenu'
-import QuizSelector from './containers/QuizSelector'
-import Game from './containers/Game'
-import GameOver from './containers/GameOver'
-import ModeSelector from './components/ModeSelector'
+import MainMenu from './components/MainMenu/Container'
+import PreGameOptions from './components/PreGame/Container'
+import Game from './components/Game/Container'
+import GameOver from './components/GameOver/Container'
+import ModeSelector from './components/ModeSelector/Component'
 import {
   MAIN_MENU,
   QUIZ_SELECTION,
@@ -15,7 +15,7 @@ import {
 
 const screens = {
   [MAIN_MENU]: <MainMenu />,
-  [QUIZ_SELECTION]: <QuizSelector />,
+  [QUIZ_SELECTION]: <PreGameOptions />,
   [MODE_SELECTION]: <ModeSelector />,
   [IN_GAME]: <Game />,
   [GAME_OVER]: <GameOver />,
