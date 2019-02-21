@@ -10,7 +10,7 @@ const Multiplayer = ({
   participantRemoved,
 }) => {
   const addPlayerInputRef = React.createRef()
-  const [playerIsBeingAdded, togglePlayerIsBeingAdded] = useState(false)
+  const [playerIsBeingAdded, adding] = useState(false)
   const [currentPlayer, beingAdded] = useState('')
 
   useEffect(() => {
@@ -20,7 +20,7 @@ const Multiplayer = ({
   const addPlayer = () => {
     currentPlayer
       ? participantAdded({ name: currentPlayer, id: secretId++ })
-      : togglePlayerIsBeingAdded(false)
+      : adding(false)
     beingAdded('')
   }
 
@@ -58,9 +58,7 @@ const Multiplayer = ({
             <button onClick={addPlayer}>Klar</button>
           </>
         ) : (
-          <button onClick={() => togglePlayerIsBeingAdded(true)}>
-            Lägg till spelare
-          </button>
+          <button onClick={() => adding(true)}>Lägg till spelare</button>
         )}
       </div>
       {participants.length > 1 && <QuizSelector quizList={quizList} />}
