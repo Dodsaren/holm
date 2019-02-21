@@ -1,17 +1,26 @@
 import React, { useState } from 'react'
 
+const useQuestion = questions => {
+  const [index, crement] = useState(0)
+  return {
+    current: questions[index],
+    prev: () => 0 <= index - 1 && crement(index - 1),
+    next: () => questions.length > index + 1 && crement(index + 1),
+  }
+}
+
 const Multiplayer = ({ quiz, endGame, participants }) => {
   const [players, updateScore] = useState([
     ...participants.map(p => ({ ...p, score: 0 })),
   ])
-  const [currentQuestion, nextQuestion] = useState(quiz.questions[0])
+  const question = useQuestion(quiz.questions)
   const [askingQuestion, isAskingQuestion] = useState(false)
   return (
     <div>
       <h1>Multiplayerspel</h1>
       {askingQuestion ? (
         <Question
-          question={currentQuestion}
+          question={question.current}
           players={players}
           updateScore={updateScore}
           isAskingQuestion={isAskingQuestion}
@@ -19,6 +28,8 @@ const Multiplayer = ({ quiz, endGame, participants }) => {
       ) : (
         <Scoreboard players={players} isAskingQuestion={isAskingQuestion} />
       )}
+      <button onClick={question.prev}>Backa bror</button>
+      <button onClick={question.next}>Neeste freege</button>
     </div>
   )
 }
@@ -59,7 +70,13 @@ const Scoreboard = ({ players, isAskingQuestion }) => (
         {p.name} - {p.score}
       </div>
     ))}
-    <button onClick={() => isAskingQuestion(true)}>Neeste freegee</button>
+    <button
+      onClick={() => {
+        isAskingQuestion(true)
+      }}
+    >
+      Till frågan
+    </button>
   </div>
 )
 export default Multiplayer
