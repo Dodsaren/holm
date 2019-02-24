@@ -30,7 +30,6 @@ const useScoreboard = participants => {
 const Multiplayer = ({ quiz, endGame, participants }) => {
   const question = useQuestion(quiz.questions)
   const scoreboard = useScoreboard(participants)
-  console.log('scoreboard', scoreboard)
   const [askingQuestion, isAskingQuestion] = useState(false)
   return (
     <div>

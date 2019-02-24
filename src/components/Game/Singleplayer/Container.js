@@ -23,7 +23,6 @@ const Container = ({ selectedQuizId, endGame }) => (
     {({ loading, error, data }) => {
       if (loading) return 'Loading'
       if (error) return `Error!: ${error}`
-      console.log('data', data)
       return <Singleplayer quiz={data.quiz[0]} endGame={endGame} />
     }}
   </Query>
