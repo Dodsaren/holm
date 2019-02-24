@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import MainMenu from './components/MainMenu/Container'
 import PreGameOptions from './components/PreGame/Container'
-import Game from './components/Game/Container'
+import Game from './components/Game/Game'
 import GameOver from './components/GameOver/Container'
 import ModeSelector from './components/ModeSelector/Component'
 import {

@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import gql from 'graphql-tag'
 import { Query } from 'react-apollo'
-import Multiplayer from './Component'
+import Singleplayer from './Singleplayer'
 import { endGame } from '../../../flux/actions'
 
 const GET_QUIZ = gql`
@@ -12,31 +12,25 @@ const GET_QUIZ = gql`
       label
       questions {
         label
-        freetextSolutions
+        options
       }
     }
   }
 `
 
-const Container = ({ selectedQuizId, participants, endGame }) => (
+const Container = ({ selectedQuizId, endGame }) => (
   <Query query={GET_QUIZ} variables={{ id: selectedQuizId }}>
     {({ loading, error, data }) => {
       if (loading) return 'Loading'
       if (error) return `Error!: ${error}`
-      return (
-        <Multiplayer
-          quiz={data.quiz[0]}
-          endGame={endGame}
-          participants={participants}
-        />
-      )
+      console.log('data', data)
+      return <Singleplayer quiz={data.quiz[0]} endGame={endGame} />
     }}
   </Query>
 )
 
-const mapStateToProps = ({ selectedQuizId, participants }) => ({
+const mapStateToProps = ({ selectedQuizId }) => ({
   selectedQuizId,
-  participants,
 })
 const mapDispatchToProps = { endGame }
 

@@ -10,7 +10,7 @@ const GET_QUIZ = gql`
       id
       label
       questions {
-        solutions
+        optionSolutions
       }
     }
   }
@@ -21,10 +21,9 @@ const GameOver = ({ selectedQuizId }) => (
     {({ loading, error, data }) => {
       if (loading) return 'Loading'
       if (error) return `Error!: ${error}`
-      console.log(data)
       return (
         <GameOverComponent
-          solutions={data.quiz[0].questions.map(x => x.solutions)}
+          solutions={data.quiz[0].questions.map(x => x.optionSolutions)}
         />
       )
     }}

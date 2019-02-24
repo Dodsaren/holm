@@ -9,11 +9,28 @@ const useQuestion = questions => {
   }
 }
 
-const Multiplayer = ({ quiz, endGame, participants }) => {
-  const [players, updateScore] = useState([
+const useScoreboard = participants => {
+  const [players, setScore] = useState([
     ...participants.map(p => ({ ...p, score: 0 })),
   ])
+
+  return {
+    players,
+    add(points = 1, playerId) {
+      setScore([
+        ...players.map(x => ({
+          ...x,
+          score: playerId === x.id ? x.score + points : x.score,
+        })),
+      ])
+    },
+  }
+}
+
+const Multiplayer = ({ quiz, endGame, participants }) => {
   const question = useQuestion(quiz.questions)
+  const scoreboard = useScoreboard(participants)
+  console.log('scoreboard', scoreboard)
   const [askingQuestion, isAskingQuestion] = useState(false)
   return (
     <div>
@@ -21,12 +38,14 @@ const Multiplayer = ({ quiz, endGame, participants }) => {
       {askingQuestion ? (
         <Question
           question={question.current}
-          players={players}
-          updateScore={updateScore}
+          scoreboard={scoreboard}
           isAskingQuestion={isAskingQuestion}
         />
       ) : (
-        <Scoreboard players={players} isAskingQuestion={isAskingQuestion} />
+        <Scoreboard
+          scoreboard={scoreboard}
+          isAskingQuestion={isAskingQuestion}
+        />
       )}
       <button onClick={question.prev}>Backa bror</button>
       <button onClick={question.next}>Neeste freege</button>
@@ -34,38 +53,52 @@ const Multiplayer = ({ quiz, endGame, participants }) => {
   )
 }
 
-const Question = ({ question, players, updateScore, isAskingQuestion }) => (
-  <div>
-    <h3>{question.label}</h3>
-    <div>Visa svar, kanske toggle: (fritextlösning)</div>
-    <div>
-      <h4>Dela ut poäng</h4>
-      {players.map(p => (
-        <button
-          key={p.id}
-          onClick={() => {
-            updateScore([
-              ...players.map(x => ({
-                ...x,
-                score: p.id === x.id ? x.score + 1 : x.score,
-              })),
-            ])
-          }}
-        >
-          {p.name} - {p.score}
-        </button>
-      ))}
-    </div>
-    <div>
-      <button onClick={() => isAskingQuestion(false)}>Till poängtavlan</button>
-    </div>
-  </div>
-)
+const useToggle = value => {
+  const [bool, toggle] = useState(value)
+  return [bool, () => toggle(!bool)]
+}
 
-const Scoreboard = ({ players, isAskingQuestion }) => (
+const Question = ({ question, scoreboard, isAskingQuestion }) => {
+  const [showAnswer, toggle] = useToggle(false)
+  return (
+    <div>
+      <h3>{question.label}</h3>
+      <div onClick={toggle} role="button">
+        {showAnswer ? (
+          <h4>{question.freetextSolutions[0]}</h4>
+        ) : (
+          <h4>Visa svar</h4>
+        )}
+      </div>
+      <div>
+        <h4>Dela ut poäng</h4>
+        {scoreboard.players.map(p => (
+          <div key={p.id}>
+            <div>
+              <button onClick={() => scoreboard.add(1, p.id)}>+</button>
+            </div>
+            <div>
+              {p.name} - {p.score}
+            </div>
+            <div>
+              <button onClick={() => scoreboard.add(-1, p.id)}>-</button>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div>
+        <button onClick={() => isAskingQuestion(false)}>
+          Till poängtavlan
+        </button>
+      </div>
+    </div>
+  )
+}
+
+const Scoreboard = ({ scoreboard, isAskingQuestion }) => (
   <div>
     <h2>Deltagare</h2>
-    {players.map(p => (
+    {scoreboard.players.map(p => (
       <div key={p.name}>
         {p.name} - {p.score}
       </div>
