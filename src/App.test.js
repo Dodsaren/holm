@@ -17,8 +17,11 @@ import {
   MODE_SELECTION,
   IN_GAME,
   GAME_OVER,
-} from './flux/gameStates'
-import { LOCAL_MULTIPLAYER_CORE, SINGLEPLAYER_CORE } from './flux/gameModes'
+} from './constants/gameStates'
+import {
+  LOCAL_MULTIPLAYER_CORE,
+  SINGLEPLAYER_CORE,
+} from './constants/gameModes'
 import Singleplayer, {
   GET_QUIZ as GET_QUIZ_FOR_SPC,
 } from './components/Game/Singleplayer/Container'

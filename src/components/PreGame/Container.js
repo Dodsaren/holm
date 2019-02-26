@@ -2,7 +2,10 @@ import React from 'react'
 import { connect } from 'react-redux'
 import gql from 'graphql-tag'
 import { Query } from 'react-apollo'
-import { LOCAL_MULTIPLAYER_CORE, SINGLEPLAYER_CORE } from '../../flux/gameModes'
+import {
+  LOCAL_MULTIPLAYER_CORE,
+  SINGLEPLAYER_CORE,
+} from '../../constants/gameModes'
 import Singleplayer from './Singleplayer'
 import Multiplayer from './Multiplayer/Container'
 

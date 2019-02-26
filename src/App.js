@@ -11,7 +11,7 @@ import {
   MODE_SELECTION,
   IN_GAME,
   GAME_OVER,
-} from './flux/gameStates'
+} from './constants/gameStates'
 
 const screens = {
   [MAIN_MENU]: <MainMenu />,

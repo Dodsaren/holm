@@ -15,7 +15,7 @@ import {
   MODE_SELECTION,
   IN_GAME,
   GAME_OVER,
-} from '../flux/gameStates'
+} from '../constants/gameStates'
 
 const initialState = {
   gameState: MAIN_MENU,
