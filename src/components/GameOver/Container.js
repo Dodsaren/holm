@@ -4,7 +4,7 @@ import { Query } from 'react-apollo'
 import GameOverComponent from './Component'
 import { connect } from 'react-redux'
 
-const GET_QUIZ = gql`
+export const GET_QUIZ = gql`
   query Quiz($id: ID) {
     quiz(id: $id) {
       id

@@ -5,12 +5,13 @@ import { Query } from 'react-apollo'
 import Multiplayer from './Component'
 import { endGame } from '../../../flux/actions'
 
-const GET_QUIZ = gql`
+export const GET_QUIZ = gql`
   query Quiz($id: ID) {
     quiz(id: $id) {
       id
       label
       questions {
+        id
         label
         freetextSolutions
       }

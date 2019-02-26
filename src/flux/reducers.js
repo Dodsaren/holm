@@ -22,6 +22,7 @@ const initialState = {
   selectedQuizId: null,
   answers: [],
   justFinished: null,
+  currentQuiz: null,
   mode: null,
   participants: [],
 }

@@ -6,7 +6,7 @@ import { LOCAL_MULTIPLAYER_CORE, SINGLEPLAYER_CORE } from '../../flux/gameModes'
 import Singleplayer from './Singleplayer'
 import Multiplayer from './Multiplayer/Container'
 
-const GET_QUIZ = gql`
+export const GET_QUIZ = gql`
   {
     quiz {
       id

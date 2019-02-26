@@ -48,6 +48,9 @@ const Multiplayer = ({ quiz, endGame, participants }) => {
       )}
       <button onClick={question.prev}>Backa bror</button>
       <button onClick={question.next}>Neeste freege</button>
+      {question.current.id === quiz.questions[quiz.questions.length - 1].id && (
+        <button onClick={endGame}>Avsluta spelet</button>
+      )}
     </div>
   )
 }
