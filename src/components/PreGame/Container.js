@@ -1,22 +1,14 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { compose } from 'redux'
 import gql from 'graphql-tag'
-import { Query } from 'react-apollo'
 import {
   LOCAL_MULTIPLAYER_CORE,
   SINGLEPLAYER_CORE,
 } from '../../constants/gameModes'
 import Singleplayer from './Singleplayer'
 import Multiplayer from './Multiplayer/Container'
-
-export const GET_QUIZ = gql`
-  {
-    quiz {
-      id
-      label
-    }
-  }
-`
+import withData from '../withData'
 
 const optionsScreen = mode => props => {
   const screens = {
@@ -26,14 +18,21 @@ const optionsScreen = mode => props => {
   return screens[mode]
 }
 
-const PreGameOptions = ({ mode }) => (
-  <Query query={GET_QUIZ}>
-    {({ loading, error, data }) => {
-      if (loading) return 'Loading...'
-      if (error) return `Error! ${error.message}`
-      return optionsScreen(mode)({ quizList: data.quiz })
-    }}
-  </Query>
-)
+const PreGameOptions = ({ mode, data }) =>
+  optionsScreen(mode)({ quizList: data.quiz })
 
-export default connect(({ mode }) => ({ mode }))(PreGameOptions)
+const mapStateToProps = ({ mode }) => ({ mode })
+
+export const getQuiz = gql`
+  {
+    quiz {
+      id
+      label
+    }
+  }
+`
+
+export default compose(
+  connect(mapStateToProps),
+  withData(getQuiz),
+)(PreGameOptions)

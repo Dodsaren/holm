@@ -5,9 +5,10 @@ import {
   MODE_SELECTION_CONFIRMED,
   GAME_STARTED,
   TO_MAIN_MENU,
-  END_GAME,
   PARTICIPANT_ADDED,
   PARTICIPANT_REMOVED,
+  SINGLEPLAYER_GAME_OVER,
+  MULTIPLAYER_GAME_OVER,
 } from './actionTypes'
 import {
   MAIN_MENU,
@@ -48,11 +49,19 @@ export default (state = initialState, action) => {
     case GAME_STARTED:
       return { ...state, gameState: IN_GAME }
 
-    case END_GAME:
+    case SINGLEPLAYER_GAME_OVER:
       return {
         ...state,
         gameState: GAME_OVER,
         answers: payload.answers,
+        justFinished: payload.quiz,
+      }
+
+    case MULTIPLAYER_GAME_OVER:
+      return {
+        ...state,
+        gameState: GAME_OVER,
+        participants: payload.players,
         justFinished: payload.quiz,
       }
 

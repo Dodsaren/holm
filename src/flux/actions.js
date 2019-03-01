@@ -3,7 +3,8 @@ import {
   QUIZ_SELECTED,
   GAME_STARTED,
   TO_MAIN_MENU,
-  END_GAME,
+  SINGLEPLAYER_GAME_OVER,
+  MULTIPLAYER_GAME_OVER,
   MODE_SELECTED,
   MODE_SELECTION_CONFIRMED,
   PARTICIPANT_ADDED,
@@ -26,8 +27,12 @@ export function startQuiz() {
   return { type: GAME_STARTED }
 }
 
-export function endGame(payload) {
-  return { type: END_GAME, payload }
+export function singleplayerGameOver(payload) {
+  return { type: SINGLEPLAYER_GAME_OVER, payload }
+}
+
+export function multiplayerGameOver(payload) {
+  return { type: MULTIPLAYER_GAME_OVER, payload }
 }
 
 export function modeSelected(payload) {

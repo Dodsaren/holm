@@ -1,5 +1,5 @@
 import React from 'react'
-import { shallow, mount } from 'enzyme'
+import { shallow, render, mount } from 'enzyme'
 import App from './App'
 import MainMenu from './components/MainMenu/Container'
 import Game from './components/Game/Game'
@@ -9,7 +9,7 @@ import GameOver, {
 import ModeSelector from './components/ModeSelector/Component'
 import PreGameOptions, { GET_QUIZ } from './components/PreGame/Container'
 import { Provider } from 'react-redux'
-import { MockedProvider } from 'react-apollo/test-utils'
+import { MockedProvider as ApolloProvider } from 'react-apollo/test-utils'
 import configureStore from 'redux-mock-store'
 import {
   MAIN_MENU,
@@ -28,6 +28,7 @@ import Singleplayer, {
 import Multiplayer, {
   GET_QUIZ as GET_QUIZ_FOR_LMPC,
 } from './components/Game/Multiplayer/Container'
+import QuizSelector from './components/PreGame/QuizSelector'
 
 const createMockStore = configureStore()
 
@@ -50,7 +51,7 @@ it('renders PreGameOptions component when gameState is QUIZ_SELECTION', () => {
   const mocks = [
     {
       request: {
-        query: GET_QUIZ,
+        query: null,
       },
       result: {
         data: {
@@ -64,14 +65,15 @@ it('renders PreGameOptions component when gameState is QUIZ_SELECTION', () => {
       },
     },
   ]
-  const wrapper = mount(
+  const wrapper = render(
     <Provider store={store}>
-      <MockedProvider mocks={mocks}>
+      <ApolloProvider mocks={mocks}>
         <App />
-      </MockedProvider>
+      </ApolloProvider>
     </Provider>,
   )
-  expect(wrapper.contains(<PreGameOptions />)).toEqual(true)
+  console.log(wrapper)
+  expect(wrapper.contains(<QuizSelector />)).toEqual(true)
 })
 
 it('renders ModeSlector component when gameState is MODE_SELECTION', () => {
@@ -111,9 +113,9 @@ it('renders Singleplayer game component when gameState is IN_GAME and mode is SI
   ]
   const wrapper = mount(
     <Provider store={store}>
-      <MockedProvider mocks={mocks}>
+      <ApolloProvider mocks={mocks}>
         <App />
-      </MockedProvider>
+      </ApolloProvider>
     </Provider>,
   )
   expect(wrapper.contains(<Game />)).toEqual(true)
@@ -151,9 +153,9 @@ it('renders Multiplayer couch game component when gameState is IN_GAME and mode 
   ]
   const wrapper = mount(
     <Provider store={store}>
-      <MockedProvider mocks={mocks}>
+      <ApolloProvider mocks={mocks}>
         <App />
-      </MockedProvider>
+      </ApolloProvider>
     </Provider>,
   )
   expect(wrapper.contains(<Game />)).toEqual(true)
@@ -182,9 +184,9 @@ it('should render GameOver component when gameState is GAME_OVER', () => {
   ]
   const wrapper = mount(
     <Provider store={store}>
-      <MockedProvider mocks={mocks}>
+      <ApolloProvider mocks={mocks}>
         <App />
-      </MockedProvider>
+      </ApolloProvider>
     </Provider>,
   )
   expect(wrapper.contains(<GameOver />)).toEqual(true)

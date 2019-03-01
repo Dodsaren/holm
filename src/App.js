@@ -20,6 +20,14 @@ const screens = {
   [IN_GAME]: <Game />,
   [GAME_OVER]: <GameOver />,
 }
-const App = ({ gameState }) => screens[gameState]
+
+const App = ({ gameState }) =>
+  screens[gameState] || <Error gameState={gameState} />
 const mapStateToProps = ({ gameState }) => ({ gameState })
 export default connect(mapStateToProps)(App)
+
+const Error = ({ gameState }) => (
+  <div>
+    <h2>Det gick inte att ladda in {gameState}</h2>
+  </div>
+)

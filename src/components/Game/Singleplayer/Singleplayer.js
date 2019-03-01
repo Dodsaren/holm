@@ -35,7 +35,7 @@ class Singleplayer extends Component {
     const nextIndex = this.state.questionIndex + 1
     const answers = [...this.state.collectedAnswers, this.state.selected]
     if (nextIndex > this.maxIndex) {
-      this.props.endGame({ answers, quiz: this.props.quiz })
+      this.props.gameOver({ answers, quiz: this.props.quiz })
     } else {
       this.setState({
         questionIndex: nextIndex,

@@ -27,7 +27,7 @@ const useScoreboard = participants => {
   }
 }
 
-const Multiplayer = ({ quiz, endGame, participants }) => {
+const Multiplayer = ({ quiz, gameOver, participants }) => {
   const question = useQuestion(quiz.questions)
   const scoreboard = useScoreboard(participants)
   const [askingQuestion, isAskingQuestion] = useState(false)
@@ -49,7 +49,9 @@ const Multiplayer = ({ quiz, endGame, participants }) => {
       <button onClick={question.prev}>Backa bror</button>
       <button onClick={question.next}>Neeste freege</button>
       {question.current.id === quiz.questions[quiz.questions.length - 1].id && (
-        <button onClick={endGame}>Avsluta spelet</button>
+        <button onClick={() => gameOver({ players: scoreboard.players, quiz })}>
+          Avsluta spelet
+        </button>
       )}
     </div>
   )

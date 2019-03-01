@@ -1,11 +1,26 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { compose } from 'redux'
 import gql from 'graphql-tag'
-import { Query } from 'react-apollo'
 import Multiplayer from './Component'
-import { endGame } from '../../../flux/actions'
+import { multiplayerGameOver as gameOver } from '../../../flux/actions'
+import withData from '../../withData'
 
-export const GET_QUIZ = gql`
+const Container = ({ participants, gameOver, data }) => (
+  <Multiplayer
+    quiz={data.quiz[0]}
+    gameOver={gameOver}
+    participants={participants}
+  />
+)
+
+const mapStateToProps = ({ selectedQuizId, participants }) => ({
+  selectedQuizId,
+  participants,
+})
+const mapDispatchToProps = { gameOver }
+
+export const getQuiz = gql`
   query Quiz($id: ID) {
     quiz(id: $id) {
       id
@@ -18,30 +33,12 @@ export const GET_QUIZ = gql`
     }
   }
 `
+const variables = ({ selectedQuizId }) => ({ id: selectedQuizId })
 
-const Container = ({ selectedQuizId, participants, endGame }) => (
-  <Query query={GET_QUIZ} variables={{ id: selectedQuizId }}>
-    {({ loading, error, data }) => {
-      if (loading) return 'Loading'
-      if (error) return `Error!: ${error}`
-      return (
-        <Multiplayer
-          quiz={data.quiz[0]}
-          endGame={endGame}
-          participants={participants}
-        />
-      )
-    }}
-  </Query>
-)
-
-const mapStateToProps = ({ selectedQuizId, participants }) => ({
-  selectedQuizId,
-  participants,
-})
-const mapDispatchToProps = { endGame }
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
+export default compose(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps,
+  ),
+  withData(getQuiz, variables),
 )(Container)

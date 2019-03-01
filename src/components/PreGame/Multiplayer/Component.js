@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import style from './component.module.css'
 import QuizSelector from '../QuizSelector'
 
@@ -9,7 +9,7 @@ const Multiplayer = ({
   participantAdded,
   participantRemoved,
 }) => {
-  const addPlayerInputRef = React.createRef()
+  const addPlayerInputRef = useRef(null)
   const [playerIsBeingAdded, adding] = useState(false)
   const [currentPlayer, beingAdded] = useState('')
 
