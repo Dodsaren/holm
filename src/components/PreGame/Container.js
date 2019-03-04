@@ -10,7 +10,7 @@ import Singleplayer from './Singleplayer'
 import Multiplayer from './Multiplayer/Container'
 import withData from '../withData'
 
-const optionsScreen = mode => props => {
+const map = mode => props => {
   const screens = {
     [SINGLEPLAYER_CORE]: <Singleplayer {...props} />,
     [LOCAL_MULTIPLAYER_CORE]: <Multiplayer {...props} />,
@@ -18,8 +18,7 @@ const optionsScreen = mode => props => {
   return screens[mode]
 }
 
-const PreGameOptions = ({ mode, data }) =>
-  optionsScreen(mode)({ quizList: data.quiz })
+const PreGameOptions = ({ mode, data }) => map(mode)({ quizList: data.quiz })
 
 const mapStateToProps = ({ mode }) => ({ mode })
 

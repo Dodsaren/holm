@@ -29,7 +29,7 @@ export const getQuiz = gql`
   }
 `
 
-const variables = ({ selectedQuizId }) => ({
+const mapPropsToVariables = ({ selectedQuizId }) => ({
   id: selectedQuizId,
 })
 
@@ -38,5 +38,5 @@ export default compose(
     mapStateToProps,
     mapDispatchToProps,
   ),
-  withData(getQuiz, variables),
+  withData(getQuiz, mapPropsToVariables),
 )(Container)

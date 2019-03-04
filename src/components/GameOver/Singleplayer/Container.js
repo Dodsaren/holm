@@ -6,19 +6,10 @@ import Component from './Component'
 import { toMainMenu, initGame } from '../../../flux/actions'
 import gql from 'graphql-tag'
 
-const GameOver = ({
-  justFinished,
-  answers,
-  data,
-  toQuizSelection,
-  toMainMenu,
-}) => (
+const GameOver = props => (
   <Component
-    justFinished={justFinished}
-    answers={answers}
-    solutions={data.quiz[0].questions.map(x => x.optionSolutions)}
-    toQuizSelection={toQuizSelection}
-    toMainMenu={toMainMenu}
+    {...props}
+    solutions={props.data.quiz[0].questions.map(x => x.optionSolutions)}
   />
 )
 
@@ -43,12 +34,12 @@ export const getSolutions = gql`
   }
 `
 
-const variables = ({ selectedQuizId }) => ({ id: selectedQuizId })
+const mapPropsToVariables = ({ selectedQuizId }) => ({ id: selectedQuizId })
 
 export default compose(
   connect(
     mapStateToProps,
     mapDispatchToProps,
   ),
-  withData(getSolutions, variables),
+  withData(getSolutions, mapPropsToVariables),
 )(GameOver)

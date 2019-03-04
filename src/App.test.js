@@ -5,7 +5,7 @@ import MainMenu from './components/MainMenu/Container'
 import Game from './components/Game/Game'
 import GameOver, {
   GET_QUIZ as GET_QUIZ_FOR_GO,
-} from './components/GameOver/Container'
+} from './components/GameOver/GameOver'
 import ModeSelector from './components/ModeSelector/Component'
 import PreGameOptions, { GET_QUIZ } from './components/PreGame/Container'
 import { Provider } from 'react-redux'

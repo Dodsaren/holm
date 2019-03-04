@@ -1,12 +1,8 @@
 import React from 'react'
 import { Query } from 'react-apollo'
 
-const withData = (
-  query,
-  extractVariablesFromProps = null,
-) => Component => props => {
-  const variables =
-    extractVariablesFromProps && extractVariablesFromProps(props)
+const withData = (query, mapPropsToVariables = null) => Component => props => {
+  const variables = mapPropsToVariables && mapPropsToVariables(props)
   return (
     <Query query={query} variables={variables}>
       {({ loading, error, data }) => {

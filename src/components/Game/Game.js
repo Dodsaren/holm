@@ -12,6 +12,8 @@ const screens = {
   [SINGLEPLAYER_CORE]: <Singleplayer />,
 }
 
+const Game = ({ mode }) => screens[mode] || <p>No component for mode {mode}</p>
+
 const mapStateToProps = ({ mode }) => ({ mode })
 
-export default connect(mapStateToProps)(({ mode }) => screens[mode])
+export default connect(mapStateToProps)(Game)

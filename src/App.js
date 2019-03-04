@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import MainMenu from './components/MainMenu/Container'
 import PreGameOptions from './components/PreGame/Container'
 import Game from './components/Game/Game'
-import GameOver from './components/GameOver/Container'
+import GameOver from './components/GameOver/GameOver'
 import ModeSelector from './components/ModeSelector/Component'
 import {
   MAIN_MENU,
@@ -23,7 +23,9 @@ const screens = {
 
 const App = ({ gameState }) =>
   screens[gameState] || <Error gameState={gameState} />
+
 const mapStateToProps = ({ gameState }) => ({ gameState })
+
 export default connect(mapStateToProps)(App)
 
 const Error = ({ gameState }) => (
