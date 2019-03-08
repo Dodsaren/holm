@@ -19,8 +19,7 @@ const mapStateToProps = ({ selectedQuizId, participants }) => ({
   participants,
 })
 const mapDispatchToProps = { gameOver }
-
-export const getQuiz = gql`
+const getQuiz = gql`
   query Quiz($id: ID) {
     quiz(id: $id) {
       id

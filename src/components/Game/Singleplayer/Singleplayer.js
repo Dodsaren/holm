@@ -1,67 +1,40 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
+import { useQuestion } from '../gameHooks'
 
-const Quiz = ({ quiz, question, selected, select, increment }) => (
-  <div>
-    <h1>{quiz.label}</h1>
+const Singleplayer = ({ quiz, gameOver }) => {
+  const [selected, setSelected] = useState(null)
+  const [answers, setAnswers] = useState([])
+  const question = useQuestion(quiz.questions)
+  const lockAnswer = () => {
+    setAnswers([...answers, selected])
+    if (question.isLast) {
+      gameOver({ answers, quiz })
+    } else {
+      question.next()
+    }
+  }
+
+  return (
+    <div>
+      <h1>{quiz.label}</h1>
+      <Question question={question.current} setSelected={setSelected} />
+      <button disabled={selected === null} onClick={lockAnswer} type="button">
+        nesta frega
+      </button>
+    </div>
+  )
+}
+
+const Question = ({ question, setSelected }) => (
+  <>
     <div>{question.id}</div>
     <div>{question.label}</div>
     {question.options.map((option, idx) => (
-      <div key={option} onClick={() => select(idx)}>
+      <div key={option} onClick={() => setSelected(idx)}>
         {option}
       </div>
     ))}
-    <button disabled={selected === null} onClick={increment} type="button">
-      nesta frega
-    </button>
-  </div>
+  </>
 )
-
-class Singleplayer extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      questionIndex: 0,
-      collectedAnswers: [],
-      selected: null,
-    }
-
-    this.maxIndex = props.quiz.questions.length - 1
-
-    this.increment = this.increment.bind(this)
-    this.select = this.select.bind(this)
-  }
-
-  increment() {
-    const nextIndex = this.state.questionIndex + 1
-    const answers = [...this.state.collectedAnswers, this.state.selected]
-    if (nextIndex > this.maxIndex) {
-      this.props.gameOver({ answers, quiz: this.props.quiz })
-    } else {
-      this.setState({
-        questionIndex: nextIndex,
-        selected: null,
-        collectedAnswers: answers,
-      })
-    }
-  }
-
-  select(idx) {
-    this.setState({ selected: idx })
-  }
-
-  render() {
-    const selected = this.state.selected
-    const question = this.props.quiz.questions[this.state.questionIndex]
-    return (
-      <Quiz
-        quiz={this.props.quiz}
-        question={question}
-        select={this.select}
-        increment={this.increment}
-        selected={selected}
-      />
-    )
-  }
-}
 
 export default Singleplayer
