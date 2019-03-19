@@ -6,10 +6,12 @@ const Singleplayer = ({ quiz, gameOver }) => {
   const [answers, setAnswers] = useState([])
   const question = useQuestion(quiz.questions)
   const lockAnswer = () => {
-    setAnswers([...answers, selected])
+    const updatedAnswers = [...answers, selected]
+    setAnswers(updatedAnswers)
     if (question.isLast) {
-      gameOver({ answers, quiz })
+      gameOver({ answers: updatedAnswers, quiz })
     } else {
+      setSelected(null)
       question.next()
     }
   }
