@@ -10,6 +10,9 @@ import Singleplayer from './Singleplayer'
 import Multiplayer from './Multiplayer/Container'
 import withData from '../data/withData'
 
+const PreGame = ({ mode, data, quizListLoaded }) =>
+  map(mode)({ quizList: data.quiz })
+
 const map = mode => props => {
   const screens = {
     [SINGLEPLAYER_CORE]: <Singleplayer {...props} />,
@@ -17,8 +20,6 @@ const map = mode => props => {
   }
   return screens[mode]
 }
-
-const PreGameOptions = ({ mode, data }) => map(mode)({ quizList: data.quiz })
 
 const mapStateToProps = ({ mode }) => ({ mode })
 
@@ -34,4 +35,4 @@ export const getQuiz = gql`
 export default compose(
   connect(mapStateToProps),
   withData(getQuiz),
-)(PreGameOptions)
+)(PreGame)

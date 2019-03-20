@@ -3,7 +3,7 @@ import { Provider } from 'react-redux'
 import configureStore from 'redux-mock-store'
 import { shallow, render, mount } from 'enzyme'
 import App from './App'
-import MainMenu from '../MainMenu/Container'
+import MainMenu from '../MainMenu/MainMenu'
 import { MAIN_MENU } from '../../constants/gameStates'
 
 const createMockStore = configureStore()
