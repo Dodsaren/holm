@@ -4,7 +4,7 @@ import { compose } from 'redux'
 import gql from 'graphql-tag'
 import Singleplayer from './Singleplayer'
 import { singleplayerGameOver as gameOver } from '../../../flux/actions'
-import withData from '../../withData'
+import withData from '../../data/withData'
 
 const Container = ({ gameOver, data }) => (
   <Singleplayer quiz={data.quiz[0]} gameOver={gameOver} />

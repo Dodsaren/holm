@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import Button from '../common/Button/Button'
 import { modeConfirmed, modeSelected } from '../../flux/actions'
 import {
   SINGLEPLAYER_CORE,
@@ -9,18 +10,24 @@ import {
 const ModeSelector = ({ mode, modeSelected, modeConfirmed }) => (
   <div>
     <h1>Select a game mode!</h1>
-    <button onClick={() => modeSelected({ mode: SINGLEPLAYER_CORE })}>
+    <Button
+      icon="user"
+      onClick={() => modeSelected({ mode: SINGLEPLAYER_CORE })}
+    >
       Single player
-    </button>
+    </Button>
     {mode === SINGLEPLAYER_CORE && (
       <div>
         Gammal hederlig frågesport mot dig själv.
         <button onClick={modeConfirmed}>Kör!</button>
       </div>
     )}
-    <button onClick={() => modeSelected({ mode: LOCAL_MULTIPLAYER_CORE })}>
+    <Button
+      icon="users"
+      onClick={() => modeSelected({ mode: LOCAL_MULTIPLAYER_CORE })}
+    >
       Multiplayer
-    </button>
+    </Button>
     {mode === LOCAL_MULTIPLAYER_CORE && (
       <div>
         Frågesport med vänner!

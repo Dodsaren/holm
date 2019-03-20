@@ -8,7 +8,7 @@ import {
 } from '../../constants/gameModes'
 import Singleplayer from './Singleplayer'
 import Multiplayer from './Multiplayer/Container'
-import withData from '../withData'
+import withData from '../data/withData'
 
 const map = mode => props => {
   const screens = {

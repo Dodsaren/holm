@@ -1,6 +1,7 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
-export default ({
+const GameOverComponent = ({
   answers,
   justFinished,
   toMainMenu,
@@ -32,3 +33,13 @@ export default ({
     </ul>
   </div>
 )
+
+GameOverComponent.propTypes = {
+  answers: PropTypes.array.isRequired,
+  justFinished: PropTypes.object.isRequired,
+  toMainMenu: PropTypes.func.isRequired,
+  toQuizSelection: PropTypes.func.isRequired,
+  solutions: PropTypes.array.isRequired,
+}
+
+export default GameOverComponent

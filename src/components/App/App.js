@@ -1,17 +1,18 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import MainMenu from './components/MainMenu/Container'
-import PreGameOptions from './components/PreGame/Container'
-import Game from './components/Game/Game'
-import GameOver from './components/GameOver/GameOver'
-import ModeSelector from './components/ModeSelector/Component'
+import MainMenu from '../MainMenu/Container'
+import PreGameOptions from '../PreGame/Container'
+import Game from '../Game/Game'
+import GameOver from '../GameOver/GameOver'
+import ModeSelector from '../ModeSelector/Component'
 import {
   MAIN_MENU,
   QUIZ_SELECTION,
   MODE_SELECTION,
   IN_GAME,
   GAME_OVER,
-} from './constants/gameStates'
+} from '../../constants/gameStates'
+import styles from './app.module.css'
 
 const screens = {
   [MAIN_MENU]: <MainMenu />,
@@ -21,8 +22,11 @@ const screens = {
   [GAME_OVER]: <GameOver />,
 }
 
-const App = ({ gameState }) =>
-  screens[gameState] || <Error gameState={gameState} />
+const App = ({ gameState }) => (
+  <div className={styles.app}>
+    {screens[gameState] || <Error gameState={gameState} />}
+  </div>
+)
 
 const mapStateToProps = ({ gameState }) => ({ gameState })
 

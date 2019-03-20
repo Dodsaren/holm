@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
-import withData from '../../withData'
+import withData from '../../data/withData'
 import Component from './Component'
 import { toMainMenu, initGame } from '../../../flux/actions'
 import gql from 'graphql-tag'

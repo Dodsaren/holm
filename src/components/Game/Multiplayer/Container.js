@@ -4,7 +4,7 @@ import { compose } from 'redux'
 import gql from 'graphql-tag'
 import Multiplayer from './Component'
 import { multiplayerGameOver as gameOver } from '../../../flux/actions'
-import withData from '../../withData'
+import withData from '../../data/withData'
 
 const Container = ({ participants, gameOver, data }) => (
   <Multiplayer
