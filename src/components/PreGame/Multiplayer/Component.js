@@ -15,7 +15,7 @@ const Multiplayer = ({
 
   useEffect(() => {
     playerIsBeingAdded && addPlayerInputRef.current.focus()
-  })
+  }, [playerIsBeingAdded, addPlayerInputRef])
 
   const addPlayer = () => {
     currentPlayer

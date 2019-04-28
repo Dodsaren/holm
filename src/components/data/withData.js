@@ -1,6 +1,5 @@
 import React from 'react'
 import { Query } from 'react-apollo'
-import { connect, ReactReduxContext } from 'react-redux'
 
 const withData = (query, mapPropsToVariables = null) => Component => props => {
   const variables = mapPropsToVariables && mapPropsToVariables(props)
