@@ -18,7 +18,9 @@ const mapStateToProps = ({ selectedQuizId, participants }) => ({
   selectedQuizId,
   participants,
 })
+
 const mapDispatchToProps = { gameOver }
+
 const getQuiz = gql`
   query Quiz($id: ID) {
     quiz(id: $id) {
@@ -32,6 +34,7 @@ const getQuiz = gql`
     }
   }
 `
+
 const mapPropsToVariables = ({ selectedQuizId }) => ({ id: selectedQuizId })
 
 export default compose(

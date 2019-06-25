@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import MainMenu from '../MainMenu/MainMenu'
-import PreGameOptions from '../PreGame/PreGame'
+import QuizSelection from '../QuizSelection/QuizSelection'
 import Game from '../Game/Game'
 import GameOver from '../GameOver/GameOver'
 import ModeSelector from '../ModeSelector/Component'
@@ -16,7 +16,7 @@ import styles from './app.module.css'
 
 const screens = {
   [MAIN_MENU]: <MainMenu />,
-  [QUIZ_SELECTION]: <PreGameOptions />,
+  [QUIZ_SELECTION]: <QuizSelection />,
   [MODE_SELECTION]: <ModeSelector />,
   [IN_GAME]: <Game />,
   [GAME_OVER]: <GameOver />,
