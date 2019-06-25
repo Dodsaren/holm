@@ -2,10 +2,24 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { selectQuiz, startQuiz } from '../../flux/actions'
 
-const QuizSelector = ({ selectedQuizId, quizList, selectQuiz, startQuiz }) => (
-  <section>
-    <h1>Välj frågesport</h1>
-    {quizList.map(q => (
+const QuizSelector = ({ selectedQuizId, quizList, selectQuiz, startQuiz }) => {
+  console.log(selectedQuizId)
+  const quiz = selectedQuizId
+    ? quizList.find(q => parseInt(q.id, 10) === parseInt(selectedQuizId, 10))
+    : null
+
+  return (
+    <section>
+      <h1>Välj frågesport</h1>
+      <QuizList data={quizList} selectQuiz={selectQuiz} />
+      {quiz && <SelectedQuiz quiz={quiz} startQuiz={startQuiz} />}
+    </section>
+  )
+}
+
+const QuizList = ({ data, selectQuiz }) => (
+  <div>
+    {data.map(q => (
       <button
         onClick={e => selectQuiz(parseInt(e.target.value, 10))}
         key={q.id}
@@ -14,17 +28,11 @@ const QuizSelector = ({ selectedQuizId, quizList, selectQuiz, startQuiz }) => (
         {q.label}
       </button>
     ))}
-    {selectedQuizId && (
-      <div>
-        <button onClick={startQuiz}>Kör</button> igång{' '}
-        {
-          quizList.find(
-            q => parseInt(q.id, 10) === parseInt(selectedQuizId, 10),
-          ).label
-        }
-      </div>
-    )}
-  </section>
+  </div>
+)
+
+const SelectedQuiz = ({ quiz, startQuiz }) => (
+  <button onClick={startQuiz}>Kör igång {quiz.label}</button>
 )
 
 const mapStateToProps = ({ selectedQuizId }) => ({
